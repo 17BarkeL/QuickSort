@@ -25,13 +25,16 @@ namespace QuickSort
             int item1 = 0;
             int item2 = 0;
 
-            for (int pass = 0; pass < listToSort.Count - 1; pass++) // Number of passes
+            for (int pass = 0; pass < listToSort.Count; pass++) // Number of passes
             {
                 Console.WriteLine("--------");
 
                 for (int comparison = 0; comparison < listToSort.Count - pass; comparison++)
                 {
-                    Console.WriteLine(comparison);
+                    item1 = listToSort[comparison];
+                    item2 = listToSort[(comparison + 1, listToSort.Count)];
+
+                    Console.WriteLine(item1 + ", " + item2);
                 }
             }
         }
