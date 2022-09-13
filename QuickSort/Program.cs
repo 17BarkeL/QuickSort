@@ -10,10 +10,11 @@ namespace QuickSort
     {
         static void Main(string[] args)
         {
-            List<int> listToSort = new List<int> { 1, 5, 2, 8, 6 };
-            OutputList(listToSort);
-            OutputList(BubbleSort(listToSort));
-
+            List<int> listToSort = new List<int> { 1, 5, 2, 8, 6};
+            //OutputList(listToSort);
+            //OutputList(BubbleSort(listToSort));
+            //FindPivotIndexes(new List<List<int>> { new List<int> { 1, 3 }, new List<int> { 5, 8, 6, 7} });
+            QuickSort(listToSort);
             Console.ReadLine();
         }
 
@@ -47,20 +48,27 @@ namespace QuickSort
             List<int> sortingList = list;
             List<List<int>> sortingSublists = new List<List<int>>();
             List<int> pivotIndexes = new List<int>();
-
+            List<int> sortedList = new List<int>(list.Count); // Insert list
 
             int pivotIndex = (int)Math.Ceiling((double)(sortingList.Count - 1) / 2);
-            int pivot = sortingList[pivotIndex];
+            sortingSublists.Add(sortingList.GetRange(0, pivotIndex));
+            sortingSublists.Add(sortingList.GetRange(pivotIndex + 1, sortingList.Count - (pivotIndex + 1)));
 
-            foreach (int item in sortingList)
-            {
-                if (item < pivot)
-                {
-                    //sortingSublists
-                }
-            }
+            OutputList(sortingSublists[0]);
+            OutputList(sortingSublists[1]);
             
+        }
 
+        static List<int> FindPivotIndexes(List<List<int>> sublists) // works
+        {
+            List<int> pivotIndexes = new List<int>();
+
+            foreach (List<int> sublist in sublists)
+            {
+                pivotIndexes.Add((int)Math.Ceiling((double)(sublist.Count - 1) / 2));
+            }
+
+            return pivotIndexes;
         }
 
         static void OutputList(List<int> list)
